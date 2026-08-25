@@ -17,11 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
-      - name: Merge current upstream default branch
+      - name: Merge current upstream default branch for build
         run: |
           git remote add upstream https://github.com/tcgdex/cards-database.git
           git fetch upstream master
@@ -30,7 +30,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git merge --no-edit upstream/master
-          git push origin HEAD:master
 
       - name: Check whether a catalog build is needed
         id: catalog
